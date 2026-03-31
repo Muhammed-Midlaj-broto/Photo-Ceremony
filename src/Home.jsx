@@ -76,9 +76,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="absolute bottom-4 text-xs text-gray-400">
-        © 2026 Photo Ceremony
-      </div>
+      
     </div>
   );
 }
