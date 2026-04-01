@@ -1,7 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import FaceScan from "./pages/FaceScan";
+import LiveFeed from "./pages/LiveFeed"; 
 import Footer from "./components/Footer";
+import PhotoPreview from "./pages/PhotoPreview";
+import Gallery from "./pages/gallery";
+import Studio from "./pages/Studio";
 
 export default function App() {
   return (
@@ -11,6 +15,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/scan" element={<FaceScan />} />
+        <Route path="/home" element={<LiveFeed />} />
+        <Route path="/preview" element={<PhotoPreview />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/studio" element={<Studio />} />
       </Routes>
 
       {/* ✅ Footer always visible */}
@@ -18,4 +26,4 @@ export default function App() {
 
     </div>
   );
-}
+} 

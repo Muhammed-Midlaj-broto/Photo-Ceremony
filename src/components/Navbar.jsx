@@ -6,46 +6,49 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Navbar size */}
-      <div className="absolute top-5 left-0 w-full px-6 py-4 flex items-center justify-between bg-white/10 backdrop-blur-xl border-b border-white/10 z-50">
+      
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl px-6 py-3 flex items-center justify-between bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-lg z-50">
 
-        {/* logo */}
+        
         <div className="flex items-center gap-2">
-          <img src={logo} className="w-10 h-10 rounded-full object-cover" />
+          <img
+            src={logo}
+            className="w-10 h-10 rounded-full object-cover"
+            alt="logo"
+          />
           <span className="font-semibold">Photo Ceremony</span>
         </div>
 
-        
-
-        {/* buttons */}
         <div className="hidden md:flex items-center gap-4 text-base text-gray-300">
 
-        <div className="hidden md:flex items-center gap-2 text-sm text-red-400">
-          <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-          LIVE
-        </div>
-        <span className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition">
+         
+          <div className="flex items-center gap-2 text-sm text-red-400">
+            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+            LIVE
+          </div>
+
+          <span className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition">
             Gallery
-        </span>
+          </span>
 
-        <span className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition">
+          <span className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition">
             Live Feed
-        </span>
+          </span>
 
-        <span className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition">
+          <span className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition">
             Studio
-        </span>
+          </span>
 
- 
-        <div className="w-px h-6 bg-white/20 mx-2"></div>
+          
+          <div className="w-px h-6 bg-white/20 mx-2"></div>
 
-  {/* signup thing */}
-        <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:scale-105 transition cursor-pointer">
+          
+          <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:scale-105 transition cursor-pointer">
             👤
-        </div>    
-
+          </div>
         </div>
-        {/* 3 line thing */}
+
+        
         <div
           className="md:hidden flex flex-col gap-1 cursor-pointer"
           onClick={() => setOpen(!open)}
@@ -56,17 +59,16 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* 3 line thing dropdown */}
+      
       <div
-        className={`absolute top-16 right-4 w-48 transition-all duration-300 ${
+        className={`fixed top-20 right-4 w-48 transition-all duration-300 ${
           open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
-        } bg-black/90 backdrop-blur-xl border border-white/20 rounded-xl p-4 flex flex-col gap-4 text-sm z-50`}
+        } bg-black/80 backdrop-blur-xl border border-white/20 rounded-xl p-4 flex flex-col gap-4 text-sm z-50`}
       >
         <span className="cursor-pointer hover:text-white">Gallery</span>
         <span className="cursor-pointer hover:text-white">Live Feed</span>
         <span className="cursor-pointer hover:text-white">Studio</span>
 
-        {/* LIVE in mobile */}
         <div className="flex items-center gap-2 text-red-400 mt-2">
           <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
           LIVE
