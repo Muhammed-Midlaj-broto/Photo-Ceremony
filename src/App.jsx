@@ -15,7 +15,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/scan" element={<FaceScan />} />
-        <Route path="/home" element={<LiveFeed />} />
+        <Route path="/live" element={<LiveFeed />} />
         <Route path="/preview" element={<PhotoPreview />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/studio" element={<Studio />} />

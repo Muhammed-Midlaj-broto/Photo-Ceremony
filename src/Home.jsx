@@ -1,82 +1,143 @@
 import bg from "./assets/1st.jpg";
 import logo from "./assets/logo.jpeg";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { QrCode } from "lucide-react";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
-  const [mode, setMode] = useState("code");
-  const navigate = useNavigate(); // 🔥 important
+  const [code, setCode] = useState("");
+  const navigate = useNavigate();
+
+  const videoRef = useRef(null);
+
+  // 🎥 Open Camera
+  const openCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+      });
+
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+      }
+    } catch (err) {
+      alert("Camera access denied ❌");
+    }
+  };
 
   return (
     <div
-      className="h-screen w-full flex items-center justify-center relative text-white"
+      className="h-screen w-full flex items-center justify-center text-white relative overflow-hidden"
       style={{
         backgroundImage: `url(${bg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+    
+      <div className="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
 
-      <div className="relative z-10 w-[380px] p-6 text-center rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
+     
+      <div className="relative z-10 w-[380px] p-8 rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl border border-white/20 shadow-2xl">
 
-        <div className="text-xs text-gray-300 mb-2">● LIVE</div>
-
-        <div className="w-16 h-16 mx-auto mb-4 rounded-xl">
+       
+        <div className="w-20 h-20 mx-auto mb-5 rounded-2xl overflow-hidden border border-white/20">
           <img src={logo} className="w-full h-full object-cover" />
         </div>
 
-        <h1 className="text-2xl font-semibold">Photo Ceremony</h1>
+        
+        <h1 className="text-3xl font-semibold text-center bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+          Photo Ceremony
+        </h1>
 
-        <p className="text-sm text-gray-300 mb-4">
-          Capture moments. Share memories Instantly.
+        <p className="text-sm text-gray-400 text-center mt-2 mb-6">
+          Your digital lens for the moments that matter.
         </p>
 
-        <p className="text-xs text-gray-300 mb-5">
-          CHOOSE ACCESS METHOD
+      
+        <p className="text-[10px] tracking-widest text-cyan-400 mb-2">
+          ENTER EVENT CODE
         </p>
 
-        <div className="flex justify-center items-center gap-10 mb-6">
+        
+        <div className="relative mb-6">
+
+          <input
+            type="text"
+            value={code}
+            onChange={(e) => setCode(e.target.value.toUpperCase())}
+            placeholder="e.g. CELESTIAL-2024"
+            className="w-full px-5 py-4 rounded-full bg-black/50 border border-white/10 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 pr-12"
+          />
+
           
-          <div onClick={() => setMode("code")} className="cursor-pointer text-center">
-            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-              {"</>"}
-            </div>
-            <span className="text-xs">Enter Code</span>
-          </div>
+          <Dialog>
+            <DialogTrigger asChild>
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400 cursor-pointer hover:scale-110 transition">
+                <QrCode size={18} />
+              </div>
+            </DialogTrigger>
 
-          <div className="w-px h-10 bg-white/20"></div>
+            <DialogContent className="sm:max-w-sm bg-black/90 border border-white/20 text-white">
 
-          <div onClick={() => setMode("qr")} className="cursor-pointer text-center">
-            <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-              QR
+              <DialogHeader>
+                <DialogTitle className="text-center">
+                  Scan QR Code
+                </DialogTitle>
+              </DialogHeader>
+
+              
+             
+
+             
+              <Button
+                onClick={openCamera}
+                className="w-full mt-4 bg-cyan-400 text-black hover:bg-cyan-300"
+              >
+                Open Camera
+              </Button>
+
+            </DialogContent>
+          </Dialog>
+
+        </div>
+
+        
+        <button
+          onClick={() => navigate("/scan")}
+          className="w-full py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-400 text-black font-medium hover:scale-105 transition duration-300 flex items-center justify-center gap-2"
+        >
+          Join Ceremony →
+        </button>
+
+        {/* Footer */}
+        <div className="mt-8 text-center text-xs text-gray-500">
+          <div className="border-t border-white/10 pt-4">
+            <p className="mb-2 tracking-widest text-[10px]">
+              AUTHORIZED ENTRY ONLY
+            </p>
+
+            <div className="flex justify-center gap-6 text-gray-400">
+              <span className="cursor-pointer hover:text-white">
+                Support
+              </span>
+              <span className="cursor-pointer hover:text-white">
+                Privacy
+              </span>
             </div>
-            <span className="text-xs">Scan QR</span>
           </div>
         </div>
 
-        {mode === "code" && (
-          <div className="flex justify-center gap-2 mb-6">
-            {[...Array(6)].map((_, i) => (
-              <input key={i} maxLength={1} className="w-10 h-12 text-center rounded-md bg-white/10 border border-white/20" />
-            ))}
-          </div>
-        )}
-
-        {/* 🔥 NAVIGATION BUTTON */}
-        <button
-          onClick={() => navigate("/scan")}
-          className="w-full py-3 rounded-full bg-gradient-to-r from-pink-500 to-orange-400 hover:scale-105 transition duration-300"
-        >
-          {mode === "code" ? "Join Album →" : "Open Camera →"}
-        </button>
-
-        <p className="text-xs text-gray-400 mt-4">
-          Secure album access, managed by your photographer.
-        </p>
       </div>
-
-      
     </div>
   );
 }

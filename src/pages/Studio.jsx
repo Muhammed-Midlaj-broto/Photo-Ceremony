@@ -1,10 +1,32 @@
 import Navbar from "../components/Navbar";
+import { useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 export default function Studio() {
+
+  const images = [
+    { src: "/images/9.jpeg", title: "The Alphas", subtitle: "Signature Collection, 2020" },
+    { src: "/images/8.jpg", title: "Celestial Frame", subtitle: "Aurora Series" },
+    { src: "/images/7.jpg", title: "Midnight Glow", subtitle: "Darkroom Edition" },
+  ];
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const interval = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 2500);{/* scroll time */}
+
+    return () => clearInterval(interval);
+  }, [emblaApi]);
+
   return (
     <div className="min-h-screen relative text-white overflow-hidden">
 
-      {/* bg */}
+      {/* BG */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute inset-0 bg-[#020617]" />
 
@@ -17,10 +39,9 @@ export default function Studio() {
         <div className="absolute inset-0 bg-black/40 backdrop-blur-2xl" />
       </div>
 
-      
       <Navbar />
 
-      {/* cont */}
+      
       <div className="pt-28 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
         
@@ -39,8 +60,7 @@ export default function Studio() {
           <p className="text-white/60 text-sm mt-4 max-w-md leading-relaxed">
             Pioneering the “Celestial Darkroom” aesthetic. We don’t just capture
             photos; we architect light and atmosphere to immortalize the soul of
-            every ceremony. Our proprietary curation techniques blend cinematic
-            heritage with futuristic clarity.
+            every ceremony.
           </p>
 
           {/* cards */}
@@ -66,8 +86,8 @@ export default function Studio() {
 
           </div>
 
-         
-          <div className="flex gap-8 mt-8 text-center md:text-left">
+          
+          <div className="flex gap-8 mt-8">
 
             <div>
               <h3 className="text-lg font-semibold">500+</h3>
@@ -80,53 +100,69 @@ export default function Studio() {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold">%</h3>
+              <h3 className="text-lg font-semibold">100%</h3>
               <p className="text-xs text-white/60">Elite Rating</p>
             </div>
 
           </div>
 
-         
+          
           <div className="flex gap-4 mt-8">
 
-            <button className="px-5 py-2 rounded-full bg-white text-black font-medium hover:bg-gray-200 transition">
-              Book Consultation
+             <button className="px-5 py-2 rounded-full bg-white text-black font-medium 
+                transition-all duration-300 
+                hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] 
+                hover:bg-gray-200">
+                    Book Consultation
             </button>
+
 
             <button className="px-5 py-2 rounded-full 
             bg-gradient-to-r from-cyan-400 to-purple-500 text-black font-medium 
-            hover:opacity-90 transition">
-              Visit our shop
+            transition-all duration-300 
+            hover:scale-105 
+            hover:shadow-[0_0_25px_rgba(34,211,238,0.6)] 
+            hover:brightness-110">
+             Visit our shop
             </button>
 
           </div>
 
         </div>
 
-        {/* image */}
+        {/* carousel */}
         <div className="relative">
 
-          <div className="rounded-3xl overflow-hidden shadow-2xl">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
 
-            <img
-              src="/images/9.jpeg"
-              className="w-full h-[500px] object-cover"
-            />
+              {images.map((img, index) => (
+                <div className="min-w-full px-1" key={index}>
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl">
 
-          </div>
+                    <img
+                      src={img.src}
+                      className="w-full h-[500px] object-cover"
+                    />
 
-          {/* label on image */}
-          <div className="absolute bottom-6 left-6 
-          bg-black/50 backdrop-blur-xl border border-white/20 
-          px-4 py-2 rounded-full text-sm">
+                    {/* labels */}
+                    <div className="absolute bottom-6 left-6 
+                    bg-black/50 backdrop-blur-xl border border-white/20 
+                    px-4 py-2 rounded-full text-sm">
 
-            <p className="text-white font-medium">
-              The Alphs
-            </p>
-            <span className="text-xs text-cyan-400">
-              Signature Collection, 2020
-            </span>
+                      <p className="text-white font-medium">
+                        {img.title}
+                      </p>
+                      <span className="text-xs text-cyan-400">
+                        {img.subtitle}
+                      </span>
+                    </div>
 
+                  </div>
+                </div>
+              ))}
+
+            </div>
           </div>
 
         </div>

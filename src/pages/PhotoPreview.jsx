@@ -8,51 +8,51 @@ export default function PhotoPreview() {
   return (
     <div className="min-h-screen relative text-white overflow-hidden">
 
-      {/* 🌌 BACKGROUND WRAPPER */}
+      
       <div className="absolute inset-0 -z-10 pointer-events-none">
 
-        {/* BASE DARK */}
+        
         <div className="absolute inset-0 bg-[#020617]" />
 
-        {/* PURPLE GLOW */}
+        
         <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] 
         bg-purple-600/40 blur-[160px] rounded-full" />
 
-        {/* BLUE GLOW */}
+       
         <div className="absolute bottom-[-100px] right-[-100px] w-[500px] h-[500px] 
         bg-blue-500/40 blur-[160px] rounded-full" />
 
-        {/* SOFT DARK OVERLAY */}
+        
         <div className="absolute inset-0 bg-black/30 backdrop-blur-2xl" />
 
       </div>
 
-      {/* CONTENT */}
+      
       <div className="relative z-10">
 
-        {/* NAVBAR */}
+        
         <Navbar />
 
-        {/* MAIN */}
+        
         <div className="pt-28 px-4 flex flex-col items-center">
 
-          {/* IMAGE CARD */}
+          {/* CARD */}
           <div className="relative w-full max-w-5xl rounded-3xl overflow-hidden">
 
-            {/* IMAGE */}
+            
             <img
               src="/images/2.webp"
               className="w-full h-[65vh] md:h-[75vh] object-cover rounded-3xl shadow-2xl"
               alt=""
             />
 
-            {/* 🔻 BOTTOM OVERLAY */}
+            
             <div className="absolute bottom-0 left-0 w-full p-6 
             bg-gradient-to-t from-black/90 via-black/40 to-transparent">
 
               <div className="relative">
 
-                {/* TEXT (LEFT) */}
+               
                 <div>
                   <h2 className="text-lg md:text-xl font-semibold">
                     First Pic ✨
@@ -62,7 +62,7 @@ export default function PhotoPreview() {
                   </p>
                 </div>
 
-                {/* 🔥 ACTION BAR (CENTER - DESKTOP) */}
+                
                 <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-0 
                 items-center gap-7
                 bg-black/40 backdrop-blur-xl border border-white/20 
@@ -96,7 +96,7 @@ export default function PhotoPreview() {
 
           </div>
 
-          {/* 📱 MOBILE ACTION BAR */}
+          {/* responsive */}
           <div className="md:hidden flex justify-center mt-6">
 
             <div className="flex items-center gap-5 
