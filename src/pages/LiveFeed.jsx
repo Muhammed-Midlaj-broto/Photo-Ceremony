@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Layout from "../components/Layout";
 import { liveFeedData } from "../data/livefeed.data";
+import { Badge } from "@/components/ui/badge";
 
 export default function LiveFeed() {
   return (
@@ -42,10 +43,9 @@ export default function LiveFeed() {
               group-hover:opacity-100 transition"></div>
 
               {/* 🔴 LIVE BADGE (ONLY ON HOVER) */}
-              <span className="absolute top-3 right-3 bg-red-500 text-xs px-2 py-1 rounded-full 
-              opacity-0 group-hover:opacity-100 transition">
+              <Badge variant="destructive" className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition uppercase tracking-widest text-[10px] animate-pulse shadow-[0_0_10px_rgba(255,0,0,0.8)]">
                 LIVE
-              </span>
+              </Badge>
 
             </div>
           ))}

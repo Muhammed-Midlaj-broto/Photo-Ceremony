@@ -1,5 +1,5 @@
-import bg from "./assets/1st.jpg";
-import logo from "./assets/logo.jpeg";
+import bg from "../assets/1st.jpg";
+import logo from "../assets/logo.jpeg";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { QrCode } from "lucide-react";

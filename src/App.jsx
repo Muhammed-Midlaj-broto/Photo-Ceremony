@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./Home";
+import Home from "./pages/Home";
 import FaceScan from "./pages/FaceScan";
 import LiveFeed from "./pages/LiveFeed"; 
 import Footer from "./components/Footer";
