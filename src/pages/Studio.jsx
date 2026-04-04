@@ -5,15 +5,10 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/ca
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
 import Layout from "../components/Layout";
+import { studioData } from "../data/studio.data";
 
 export default function Studio() {
   const [api, setApi] = useState(null);
-
-  const images = [
-    { src: "/images/9.jpeg", title: "The Alphas", subtitle: "Signature Collection, 2020" },
-    { src: "/images/8.jpg", title: "Celestial Frame", subtitle: "Aurora Series" },
-    { src: "/images/7.jpg", title: "Midnight Glow", subtitle: "Darkroom Edition" },
-  ];
 
   useEffect(() => {
     if (!api) return;
@@ -26,19 +21,15 @@ export default function Studio() {
   }, [api]);
 
   return (
-    
-
-      <Layout>
-
+    <Layout>
       <Navbar />
 
-      
       <div className="pt-28 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
-        
+        {/* LEFT CONTENT */}
         <div>
 
-          <Badge variant="outline" className="text-cyan-400 border-cyan-400/20 bg-cyan-400/10 tracking-widest uppercase text-[10px] py-0 px-2 h-5">
+          <Badge className="text-cyan-400 border-cyan-400/20 bg-cyan-400/10 tracking-widest uppercase text-[10px] py-0 px-2 h-5">
             PREMIUM STUDIO
           </Badge>
 
@@ -54,12 +45,12 @@ export default function Studio() {
             every ceremony.
           </p>
 
-          {/* cards */}
+          {/* CARDS */}
           <div className="flex gap-4 mt-6">
 
             <Card className="bg-white/5 border-white/10 w-40 h-28">
               <CardHeader className="p-4 gap-1">
-                <CardTitle className="text-sm font-semibold text-white">
+                <CardTitle className="text-sm text-white">
                   Celestial Lighting
                 </CardTitle>
                 <CardDescription className="text-xs text-white/60">
@@ -70,7 +61,7 @@ export default function Studio() {
 
             <Card className="bg-white/5 border-white/10 w-40 h-28">
               <CardHeader className="p-4 gap-1">
-                <CardTitle className="text-sm font-semibold text-white">
+                <CardTitle className="text-sm text-white">
                   Biometric Curation
                 </CardTitle>
                 <CardDescription className="text-xs text-white/60">
@@ -81,7 +72,7 @@ export default function Studio() {
 
           </div>
 
-          
+          {/* STATS */}
           <div className="flex gap-8 mt-8">
 
             <div>
@@ -101,37 +92,37 @@ export default function Studio() {
 
           </div>
 
-          
+          {/* BUTTONS */}
           <div className="flex gap-4 mt-8">
 
-             <Button className="px-4 py-5 rounded-full bg-white text-black font-medium 
-                transition-all duration-300 
-                hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] 
-                hover:bg-gray-200">
-                    Book Consultation
+            <Button className="px-4 py-5 rounded-full bg-white text-black 
+            transition-all duration-300 
+            hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] 
+            hover:bg-gray-200">
+              Book Consultation
             </Button>
 
-
             <Button className="px-6 py-5 rounded-full 
-            bg-gradient-to-r from-cyan-400 to-purple-500 text-black font-medium 
+            bg-gradient-to-r from-cyan-400 to-purple-500 text-black 
             transition-all duration-300 
             hover:scale-105 
             hover:shadow-[0_0_25px_rgba(34,211,238,0.6)] 
             hover:brightness-110">
-             Visit our shop
+              Visit our shop
             </Button>
 
           </div>
 
         </div>
 
-        {/* carousel */}
+        {/* RIGHT CAROUSEL */}
         <div className="relative">
 
           <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
             <CarouselContent>
-              {images.map((img, index) => (
-                <CarouselItem key={index}>
+
+              {studioData.map((img) => (
+                <CarouselItem key={img.id}>
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl mx-1">
 
                     <img
@@ -140,7 +131,7 @@ export default function Studio() {
                       alt={img.title}
                     />
 
-                    {/* labels */}
+                    {/* LABEL */}
                     <div className="absolute bottom-6 left-6 
                     bg-black/50 backdrop-blur-xl border border-white/20 
                     px-4 py-2 rounded-full text-sm">
@@ -148,21 +139,23 @@ export default function Studio() {
                       <p className="text-white font-medium">
                         {img.title}
                       </p>
+
                       <span className="text-xs text-cyan-400">
                         {img.subtitle}
                       </span>
+
                     </div>
 
                   </div>
                 </CarouselItem>
               ))}
+
             </CarouselContent>
           </Carousel>
 
         </div>
 
       </div>
-   
     </Layout>
   );
 }
