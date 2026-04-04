@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import Layout from "../components/layout";
 
 export default function LiveFeed() {
   const images = [
@@ -10,28 +11,7 @@ export default function LiveFeed() {
   ];
 
   return (
-    <div className="min-h-screen relative text-white overflow-hidden">
-
-      
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-
-        <div className="absolute inset-0 bg-[#020617]" />
-
-        <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] 
-        bg-purple-600/40 blur-[160px] rounded-full" />
-
-        <div className="absolute bottom-[-100px] right-[-100px] w-[500px] h-[500px] 
-        bg-blue-500/40 blur-[160px] rounded-full" />
-
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-2xl" />
-
-      </div>
-
-      {/* EXTRA GLOWS */}
-      <div className="absolute top-[-100px] left-[-100px] w-72 h-72 bg-pink-500/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-[-100px] right-[-100px] w-72 h-72 bg-blue-500/30 rounded-full blur-3xl"></div>
-      <div className="absolute top-[40%] left-[30%] w-60 h-60 bg-purple-500/20 rounded-full blur-3xl"></div>
-
+    <Layout>
       
       <Navbar />
 
@@ -76,6 +56,6 @@ export default function LiveFeed() {
 
       </div>
 
-    </div>
+    </Layout>
   );
 }

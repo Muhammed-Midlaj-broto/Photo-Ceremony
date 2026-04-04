@@ -1,34 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { Heart, Flame, Share2, Info, Download } from "lucide-react";
+import Layout from "../components/layout";
 
 export default function PhotoPreview() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen relative text-white overflow-hidden">
-
-      
-      <div className="absolute inset-0 -z-10 pointer-events-none">
-
-        
-        <div className="absolute inset-0 bg-[#020617]" />
-
-        
-        <div className="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] 
-        bg-purple-600/40 blur-[160px] rounded-full" />
-
-       
-        <div className="absolute bottom-[-100px] right-[-100px] w-[500px] h-[500px] 
-        bg-blue-500/40 blur-[160px] rounded-full" />
-
-        
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-2xl" />
-
-      </div>
-
-      
-      <div className="relative z-10">
+    
+    <Layout>
 
         
         <Navbar />
@@ -118,7 +98,7 @@ export default function PhotoPreview() {
           </div>
 
         </div>
-      </div>
-    </div>
+      
+    </Layout>
   );
 }
