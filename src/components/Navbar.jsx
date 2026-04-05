@@ -1,17 +1,21 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/logo.jpeg";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); 
+
+  
+  const isActive = (path) => location.pathname === path;
 
   return (
     <>
       {/* Navbar */}
       <div className="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl px-6 py-3 flex items-center justify-between bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-lg z-50">
 
-        {/* Logo */}
+        
         <div
           className="flex items-center gap-2 cursor-pointer"
           onClick={() => navigate("/")}
@@ -24,45 +28,60 @@ export default function Navbar() {
           <span className="font-semibold text-white">Photo Ceremony</span>
         </div>
 
-        
+       
         <div className="hidden md:flex items-center gap-4 text-base text-gray-300">
 
-          
+         
           <div className="flex items-center gap-2 text-sm text-red-400">
             <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
             LIVE
           </div>
 
+         
           <span
             onClick={() => navigate("/live")}
-            className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition"
+            className={`px-4 py-2 rounded-full cursor-pointer transition ${
+              isActive("/live")
+                ? "bg-white/20 text-white scale-105"
+                : "hover:bg-white/10 hover:scale-105"
+            }`}
           >
             Live Feed
           </span>
 
+          
           <span
             onClick={() => navigate("/gallery")}
-            className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition"
+            className={`px-4 py-2 rounded-full cursor-pointer transition ${
+              isActive("/gallery")
+                ? "bg-white/20 text-white scale-105"
+                : "hover:bg-white/10 hover:scale-105"
+            }`}
           >
             Gallery
           </span>
 
+         
           <span
             onClick={() => navigate("/studio")}
-            className="px-4 py-2 rounded-full hover:bg-white/10 hover:scale-105 cursor-pointer transition"
+            className={`px-4 py-2 rounded-full cursor-pointer transition ${
+              isActive("/studio")
+                ? "bg-white/20 text-white scale-105"
+                : "hover:bg-white/10 hover:scale-105"
+            }`}
           >
             Studio
           </span>
 
           <div className="w-px h-6 bg-white/20 mx-2"></div>
 
-          
+      
           <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 border border-white/20 hover:bg-white/20 hover:scale-105 transition cursor-pointer">
             👤
           </div>
         </div>
 
-        {/* responsive */}
+        {/* responsive  */}
         <div
           className="md:hidden flex flex-col gap-1 cursor-pointer"
           onClick={() => setOpen(!open)}
@@ -73,7 +92,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      
+      {/* three dot dropdown */}
       <div
         className={`fixed top-20 right-4 w-48 transition-all duration-300 ${
           open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"
@@ -84,7 +103,9 @@ export default function Navbar() {
             navigate("/live");
             setOpen(false);
           }}
-          className="cursor-pointer hover:text-white"
+          className={`cursor-pointer ${
+            isActive("/live") ? "text-white font-semibold" : "hover:text-white"
+          }`}
         >
           Live Feed
         </span>
@@ -94,7 +115,9 @@ export default function Navbar() {
             navigate("/gallery");
             setOpen(false);
           }}
-          className="cursor-pointer hover:text-white"
+          className={`cursor-pointer ${
+            isActive("/gallery") ? "text-white font-semibold" : "hover:text-white"
+          }`}
         >
           Gallery
         </span>
@@ -104,7 +127,9 @@ export default function Navbar() {
             navigate("/studio");
             setOpen(false);
           }}
-          className="cursor-pointer hover:text-white"
+          className={`cursor-pointer ${
+            isActive("/studio") ? "text-white font-semibold" : "hover:text-white"
+          }`}
         >
           Studio
         </span>
